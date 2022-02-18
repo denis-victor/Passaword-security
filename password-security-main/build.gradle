@@ -1,0 +1,52 @@
+plugins {
+    id 'com.adarshr.test-logger' version '2.1.1'
+    id 'org.springframework.boot' version '2.4.1'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+}
+
+group = 'com.password'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-actuator:2.4.0'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.5.2'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.cloud:spring-cloud-sleuth-core:2.2.6.RELEASE'
+    implementation 'com.sun.xml.bind:jaxb-osgi:3.0.0'
+    implementation 'org.apache.commons:commons-lang3:3.11'
+
+    compileOnly 'org.projectlombok:lombok'
+
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    testImplementation 'junit:junit:4.13'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testCompile "io.rest-assured:json-path:4.2.0"
+    testCompile "io.rest-assured:xml-path:4.2.0"
+    testCompile "io.rest-assured:rest-assured:4.2.0"
+}
+
+testlogger {
+    theme 'mocha'
+    slowThreshold 5000
+}
+
+test {
+    useJUnitPlatform()
+    testlogger {
+        theme 'standard-parallel' // task level
+    }
+}

@@ -1,0 +1,23 @@
+spring:
+  output:
+    ansi:
+      enabled: ALWAYS
+
+server:
+  port: 8085
+
+springdoc:
+  show-actuator: true
+  swagger-ui:
+    path: /docs
+
+management:
+  endpoints:
+    enabled-by-default: false
+  endpoint:
+    health:
+      enabled: true
+
+logging:
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){blue} %clr(%5p){red} %clr([traceID=%X{X-B3-TraceId},spanID=%X{X-B3-SpanId}]){green} %clr(${PID:- }){magenta} %clr(---){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wEx"
